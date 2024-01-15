@@ -25,12 +25,7 @@ body {
   flex-direction: column;
   gap: 37px;
 }
-#weatherBoxdiv {
-  width: inherit;
-  height: 400px;
-  display: flex;
-  gap: 30px;
-}
+
 
 #searchBarDiv {
   width: inherit;
@@ -60,8 +55,121 @@ body {
   border: none;
 }
 
-div {
-  border: solid red 3px;
-  width: 60px;
-  height: 67px;
+#weatherBoxdiv {
+  width: inherit;
+  height: 500px;
+  display: flex;
+ 
+
+ 
 }
+
+#weatherInformation{
+
+  width: 493px;
+  height: 300px;
+  align-self: center;
+
+
+}
+#weatherPicture{
+
+  width: 250px;
+  height: 364px;
+
+
+  
+}
+#overlayDiv{
+
+border-radius: 12px;
+ 
+width: 250px;
+height: 355px;
+position: relative;
+top:-359px ;
+background-color: black;
+opacity: 0.7;
+color: white;
+display: flex;
+flex-direction: column;
+gap: 100px;
+border-radius: 11px;
+
+#dateLocation{
+ 
+  padding: 7px;
+  text-align: left;
+
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  gap: 3px;
+
+  #Day{
+
+    font-size: 30px;
+  }
+
+  #Date{
+     
+    margin-bottom: 5px;
+    font-size: 14px;
+    padding: 0px 0px 0px 3px;
+  }
+
+
+  #locationDiv{
+width: inherit;
+display: flex;
+gap:4px;
+
+p{
+
+  justify-self: center;
+  align-self: center;
+  font-size: 12px;
+
+}
+  }
+
+
+
+}
+
+#temeperatureInfoDiv{
+
+  width: inherit;
+  padding: 8px;
+
+  #currentTemperature{
+
+    font-size: 36px;
+
+
+  }
+
+  #typeOfweather{
+    font-size: 16px;
+    font-weight: bold;
+  }
+ 
+
+}
+}
+
+
+#skyImg{
+
+  width: inherit;
+  height: 355px;
+  border-radius: 12px;
+
+
+}
+
+/* div {
+  border: solid red 1px;
+  width: 60px;
+
+} */
