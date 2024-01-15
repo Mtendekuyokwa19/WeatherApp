@@ -2,19 +2,25 @@
 
 import "./style.css";
 import magnifyinGlass from "./icons/search.svg";
-import locationIcon from "./icons/Location.svg"
-import weatherIcon from "./icons/Sun.svg"
-import skyImg from "./imgs/sky.jpg"
+import locationIcon from "./icons/Location.svg";
+import weatherIcon from "./icons/Sun.svg";
+import skyImg from "./imgs/sky.jpg";
 
-let createElement=(()=>{
+let createElement = (() => {
   class createElementtoDom {
-    domElementCreator(type, newId, parentBox, Words = "", placeholderWords = "") {
+    domElementCreator(
+      type,
+      newId,
+      parentBox,
+      Words = "",
+      placeholderWords = "",
+    ) {
       let newElement = document.createElement(type);
       newElement.id = newId;
       newElement.textContent = Words;
       newElement.placeholder = placeholderWords;
       parentBox.appendChild(newElement);
-  
+
       return newElement;
     }
     ImageLoadtoDOm(Icon, parentBox, idName) {
@@ -22,17 +28,15 @@ let createElement=(()=>{
       myIcon.src = Icon;
       myIcon.id = idName;
       parentBox.appendChild(myIcon);
-  
+
       return myIcon;
     }
   }
-  
+
   let domElementMaker = new createElementtoDom();
 
-
-return {domElementMaker}
-})()
-
+  return { domElementMaker };
+})();
 
 let createContainer = (() => {
   let allMaterialbox = createElement.domElementMaker.domElementCreator(
@@ -80,38 +84,87 @@ let searchBarElementsHolder = (() => {
 })();
 
 let WeatherBox = (() => {
-
   let weatherPictureDiv = createElement.domElementMaker.domElementCreator(
     "div",
     "weatherPicture",
     createContainer.weatherBoxdiv,
   );
-  let skyPicture=createElement.domElementMaker.ImageLoadtoDOm(skyImg,weatherPictureDiv,"skyImg")
-  let overlayDiv=createElement.domElementMaker.domElementCreator('div',"overlayDiv",weatherPictureDiv)
+  let skyPicture = createElement.domElementMaker.ImageLoadtoDOm(
+    skyImg,
+    weatherPictureDiv,
+    "skyImg",
+  );
+  let overlayDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "overlayDiv",
+    weatherPictureDiv,
+  );
   let weatherInformation = createElement.domElementMaker.domElementCreator(
     "div",
     "weatherInformation",
     createContainer.weatherBoxdiv,
   );
 
-  return {overlayDiv}
+  return { overlayDiv };
 })();
 
-let TemperatureSetting=(()=>{
+let TemperatureSetting = (() => {
+  let dateLocationDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "dateLocation",
+    WeatherBox.overlayDiv,
+  );
+  let temperatureInfoDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "temeperatureInfoDiv",
+    WeatherBox.overlayDiv,
+  );
 
-  let  dateLocationDiv=createElement.domElementMaker.domElementCreator("div","dateLocation",WeatherBox.overlayDiv)
-  let temperatureInfoDiv=createElement.domElementMaker.domElementCreator("div","temeperatureInfoDiv",WeatherBox.overlayDiv)
+  let Day = createElement.domElementMaker.domElementCreator(
+    "p",
+    "Day",
+    dateLocationDiv,
+    "Tuesday",
+  );
+  let Date = createElement.domElementMaker.domElementCreator(
+    "p",
+    "Date",
+    dateLocationDiv,
+    "22 Jun 2023",
+  );
 
-  let Day=createElement.domElementMaker.domElementCreator("p","Day",dateLocationDiv,"Tuesday");
-  let Date=createElement.domElementMaker.domElementCreator("p","Date",dateLocationDiv,"22 Jun 2023")
+  let locationDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "locationDiv",
+    dateLocationDiv,
+  );
+  let location = createElement.domElementMaker.ImageLoadtoDOm(
+    locationIcon,
+    locationDiv,
+    "locationIcon",
+  );
+  let locationDetails = createElement.domElementMaker.domElementCreator(
+    "p",
+    "locationDetails",
+    locationDiv,
+    "Lilongwe, MW",
+  );
 
-  let locationDiv=createElement.domElementMaker.domElementCreator("div","locationDiv",dateLocationDiv)
-  let location=createElement.domElementMaker.ImageLoadtoDOm(locationIcon,locationDiv,"locationIcon")
-  let locationDetails= createElement.domElementMaker.domElementCreator("p","locationDetails",locationDiv,"Lilongwe, MW")
-
-  let currentWeatherIcon=createElement.domElementMaker.ImageLoadtoDOm(weatherIcon,temperatureInfoDiv,"currentWeatherIcon")
-  let currentTemperature=createElement.domElementMaker.domElementCreator("p","currentTemperature",temperatureInfoDiv,"20 °C")
-  let typeOfweather=createElement.domElementMaker.domElementCreator("p","typeOfweather",temperatureInfoDiv,"Sunny")
-
-
-})()
+  let currentWeatherIcon = createElement.domElementMaker.ImageLoadtoDOm(
+    weatherIcon,
+    temperatureInfoDiv,
+    "currentWeatherIcon",
+  );
+  let currentTemperature = createElement.domElementMaker.domElementCreator(
+    "p",
+    "currentTemperature",
+    temperatureInfoDiv,
+    "20 °C",
+  );
+  let typeOfweather = createElement.domElementMaker.domElementCreator(
+    "p",
+    "typeOfweather",
+    temperatureInfoDiv,
+    "Sunny",
+  );
+})();
