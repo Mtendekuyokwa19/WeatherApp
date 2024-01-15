@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Quicksand:wght@500&family=Satisfy&display=swap");
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+
+  letter-spacing: 0.8px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #0d0f11;
+}
+
+#allMaterialbox {
+  width: 726px;
+  height: 470px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+}
+#weatherBoxdiv {
+  width: inherit;
+  height: 400px;
+  display: flex;
+  gap: 30px;
+}
+
+#searchBarDiv {
+  width: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+#searchElementsBox {
+  width: 260px;
+  display: flex;
+  gap: 10px;
+
+  #searchInputElement {
+    height: 45px;
+    width: 200px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+  }
+}
+
+#findSearchButton {
+  height: 45px;
+  width: 43px;
+  background-color: #4470e2;
+  border-radius: 8px;
+  border: none;
+}
+
+div {
+  border: solid red 3px;
+  width: 60px;
+  height: 67px;
+}
