@@ -152,7 +152,7 @@ export let TemperatureSetting = (() => {
     "p",
     "locationDetails",
     locationDiv,
-    "Lilongwe, MW",
+    "Lilongwe, Malawi",
   );
 
   let currentWeatherIcon = createElement.domElementMaker.ImageLoadtoDOm(
@@ -259,8 +259,22 @@ TodayWeatherDetails.textContent=temperature
 
     
   }
+
+  
 return {changeWeather}
+})()
+
+export let locationManagement=(()=>{
+
+  function currentPlace(city,country) {
+    let location=document.querySelector('#locationDetails')
+    location.textContent=city+", "+country
+    
+  }
+
+return{currentPlace}
 })()
 
 searchBarElementsHolder.findSearchButton.addEventListener('click',GetTodayWeather.getWeather)
 daysOfweek.DaysManagement()
+daysOfweek.todayDate()

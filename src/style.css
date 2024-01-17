@@ -83,7 +83,7 @@ body {
   border-radius: 0px 12px 12px 0px;
   display: flex;
   flex-direction: column;
-  gap:16px;
+  gap:20px;
 }
 #weatherPicture {
   width: 250px;
@@ -206,7 +206,7 @@ body {
     grid-template-columns: repeat(4,80px);
     grid-template-rows: repeat(1,111px);
     color: white;
-    padding: 0px 0px 0px 91px;
+    padding:0px 0px 0px 64px;
     gap: 25px;
    div{
   
