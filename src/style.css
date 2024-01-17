@@ -44,6 +44,14 @@ body {
     border-radius: 8px;
     padding: 8px;
   }
+
+  #searchInputElement:focus{
+
+    border: none;
+    outline: none;
+
+
+  }
 }
 
 #findSearchButton {
@@ -52,6 +60,12 @@ body {
   background-color: #4470e2;
   border-radius: 8px;
   border: none;
+  transition: all 200ms ease-in-out;
+}
+
+#findSearchButton:hover{
+
+  background-color: #7B57e0;
 }
 
 #weatherBoxdiv {
@@ -64,6 +78,12 @@ body {
   width: 493px;
   height: 300px;
   align-self: center;
+  margin-top: -38px;
+  background-color: #222831;
+  border-radius: 0px 12px 12px 0px;
+  display: flex;
+  flex-direction: column;
+  gap:16px;
 }
 #weatherPicture {
   width: 250px;
@@ -137,8 +157,112 @@ body {
   border-radius: 12px;
 }
 
-/* div {
-  border: solid red 1px;
-  width: 60px;
+#extraDetailsDiv{
+  width: inherit;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  div{
+    width: inherit;
+    color: white;
 
-} */
+  }
+}
+
+#PrecipitationDiv, #HumidityDiv, #windDiv{
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  gap: 4px;
+  padding: 0px 8px;
+
+
+}
+#PrecipitationDiv>p:last-child, #HumidityDiv>p:last-child, #windDiv>p:last-child{
+
+  grid-column: 8/-2;
+  text-align: end;
+
+
+}
+#PrecipitationDiv>p:first-child, #HumidityDiv>p:first-child, #windDiv>p:first-child{
+
+  font-weight: bold;
+  grid-column: 1;
+  text-align: start
+
+}
+
+#dailyWeather{
+
+  width: inherit;
+  height: 100px;
+
+  #WeatherUpdateHolder{
+    display: grid;
+    width: inherit;
+    height: inherit;
+    grid-template-columns: repeat(4,80px);
+    grid-template-rows: repeat(1,111px);
+    color: white;
+    padding: 0px 0px 0px 91px;
+    gap: 25px;
+   div{
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+ 
+   }
+   div:not(:first-child){
+    background-color:#2c2c2c;
+   }
+
+
+  }
+
+}
+
+#TodayWeather{
+background-color: #7B57e0;
+  
+
+
+}
+
+#toogleWeatherdiv{
+
+  display: flex;
+  justify-content: center;
+  height: 40px;
+button{
+
+  width: 200px;
+  background-color: #4470e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: all 200ms ease-in-out;
+
+}
+
+button:hover{
+
+background-color: #7B57e0 ;
+
+
+}
+
+
+}
+
+
+
+#Rain{
+ 
+ fill: white;
+}
+

@@ -4,7 +4,10 @@ import "./style.css";
 import magnifyinGlass from "./icons/search.svg";
 import locationIcon from "./icons/Location.svg";
 import weatherIcon from "./icons/Sun.svg";
+import rain from "./icons/rain.svg"
 import skyImg from "./imgs/sky.jpg";
+import { GetTodayWeather } from "./fetch";
+import { daysOfweek } from "./calender";
 
 let createElement = (() => {
   class createElementtoDom {
@@ -58,7 +61,7 @@ let createContainer = (() => {
   return { searchBarDiv, weatherBoxdiv };
 })();
 
-let searchBarElementsHolder = (() => {
+export let searchBarElementsHolder = (() => {
   let searchElementsBox = createElement.domElementMaker.domElementCreator(
     "div",
     "searchElementsBox",
@@ -81,6 +84,8 @@ let searchBarElementsHolder = (() => {
     findSearchButton,
     "magniftingGlassicon",
   );
+
+  return {searchInputElement,findSearchButton}
 })();
 
 let WeatherBox = (() => {
@@ -105,10 +110,10 @@ let WeatherBox = (() => {
     createContainer.weatherBoxdiv,
   );
 
-  return { overlayDiv };
+  return { overlayDiv,weatherInformation };
 })();
 
-let TemperatureSetting = (() => {
+export let TemperatureSetting = (() => {
   let dateLocationDiv = createElement.domElementMaker.domElementCreator(
     "div",
     "dateLocation",
@@ -167,4 +172,95 @@ let TemperatureSetting = (() => {
     temperatureInfoDiv,
     "Sunny",
   );
+
+  return{typeOfweather,currentWeatherIcon,currentTemperature,locationDetails,Day}
 })();
+
+let weatherDetailsDivs=(()=>{
+
+  let extraDetailsDiv=createElement.domElementMaker.domElementCreator("div","extraDetailsDiv",WeatherBox.weatherInformation)
+
+  let dailyWeather=createElement.domElementMaker.domElementCreator("div","dailyWeather",WeatherBox.weatherInformation)
+
+  let toogleWeatherDiv=createElement.domElementMaker.domElementCreator("div","toogleWeatherdiv",WeatherBox.weatherInformation)
+
+return {extraDetailsDiv,dailyWeather,toogleWeatherDiv}
+})()
+
+let extraWetherDetails=(()=>{
+
+  let PrecipitationDiv=createElement.domElementMaker.domElementCreator("div","PrecipitationDiv",weatherDetailsDivs.extraDetailsDiv)
+  let HumidityDiv=createElement.domElementMaker.domElementCreator("div","HumidityDiv",weatherDetailsDivs.extraDetailsDiv)
+  let WindDiv=createElement.domElementMaker.domElementCreator("div","windDiv",weatherDetailsDivs.extraDetailsDiv)
+
+  let Precipitaion=createElement.domElementMaker.domElementCreator("p","Precipitation",PrecipitationDiv,"Precipitation")
+  let PrecipitaionDetails=createElement.domElementMaker.domElementCreator("p","PrecipitationDetails",PrecipitationDiv,"0 mm")
+
+  let Humidity=createElement.domElementMaker.domElementCreator("p","Humidity",HumidityDiv,"Humidty")
+  let HumidityDetails=createElement.domElementMaker.domElementCreator("p","HumidityDetails",HumidityDiv,"18 mm")
+
+  let Wind=createElement.domElementMaker.domElementCreator("p","wind",WindDiv,"Wind")
+  let WindDetails=createElement.domElementMaker.domElementCreator("p","WindDetails",WindDiv,"3 km/h")
+
+
+  return{PrecipitaionDetails,HumidityDetails,WindDetails}
+})()
+
+let dailyWeatherUpdates=(()=>{
+
+  let updatesHolder=createElement.domElementMaker.domElementCreator("div","WeatherUpdateHolder",weatherDetailsDivs.dailyWeather)
+
+  let TodayWeather=createElement.domElementMaker.domElementCreator("div","TodayWeather",updatesHolder)
+  let TommorowWeather=createElement.domElementMaker.domElementCreator("div","TommorowWeather",updatesHolder)
+  let TheNextWeather=createElement.domElementMaker.domElementCreator("div","TheNextWeather",updatesHolder)
+  let TheOtherDayWeather=createElement.domElementMaker.domElementCreator("div","TheOtherDayWeather",updatesHolder)
+
+  function placeDefaultWeather() {
+    
+let weatherbox=[TheOtherDayWeather,TheNextWeather,TommorowWeather,TodayWeather]
+let DayWeather=["Tue","Wed","Thur","Fri"]
+let index=3;
+weatherbox.forEach(weatherbox => {
+
+  let Rain=createElement.domElementMaker.ImageLoadtoDOm(rain,weatherbox,"Rain")
+  let Day=createElement.domElementMaker.domElementCreator("p","dayOfWeather",weatherbox,DayWeather[index])
+  let temperature=createElement.domElementMaker.domElementCreator("p","temperatureOfday",weatherbox,"30 °C")
+  index--;
+});
+  }  
+  placeDefaultWeather();
+
+  
+ return{TodayWeather}
+})()
+
+let changeWeatherFormart=(()=>{
+
+  let toogleButton=createElement.domElementMaker.domElementCreator("button","toogleButton",weatherDetailsDivs.toogleWeatherDiv,"Fahrenheit °F")
+
+
+})()
+
+export let updateWeatherDom=(()=>{
+  let TodayWeatherIcon=document.querySelector('#TodayWeather img')
+  let TodayWeatherDetails=document.querySelector('#TodayWeather p:last-child')
+
+  function changeWeather(temperature,Precipitaion,Humidity,wind,feelsLike,icon) {
+extraWetherDetails.PrecipitaionDetails.textContent=Precipitaion+" mm";
+extraWetherDetails.HumidityDetails.textContent=Humidity+" mm";
+extraWetherDetails.WindDetails.textContent=wind+" km/h";
+
+TemperatureSetting.currentTemperature.textContent=temperature;
+TemperatureSetting.typeOfweather.textContent=feelsLike;
+TemperatureSetting.currentWeatherIcon.setAttribute("src",icon)
+
+TodayWeatherIcon.setAttribute("src",icon)
+TodayWeatherDetails.textContent=temperature
+
+    
+  }
+return {changeWeather}
+})()
+
+searchBarElementsHolder.findSearchButton.addEventListener('click',GetTodayWeather.getWeather)
+daysOfweek.DaysManagement()
