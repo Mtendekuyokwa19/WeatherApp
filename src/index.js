@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-
+import "normalize.css"
 import "./style.css";
+
 import magnifyinGlass from "./icons/search.svg";
 import locationIcon from "./icons/Location.svg";
 import weatherIcon from "./icons/Sun.svg";
@@ -284,6 +285,12 @@ let errorBox=(()=>{
 searchBarElementsHolder.findSearchButton.addEventListener('click',function () {
   GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
 })
+GetTodayWeather.getWeather("Lilongwe")
+window.addEventListener('keydown', function(event) {
+  if (event.keyCode === 13) {
+    GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
+  }
+});
 
 export let dialogBox=(()=>{
 let dialog=createElement.domElementMaker.domElementCreator("dialog","errorBox",document.body)

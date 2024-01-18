@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 90vh;
-  background-color: #0d0f11;
+  background-color: #262c36;
 }
 
 #allMaterialbox {
@@ -72,6 +72,7 @@ body {
   width: inherit;
   height: 500px;
   display: flex;
+  
 }
 
 #weatherInformation {
@@ -79,30 +80,36 @@ body {
   height: 300px;
   align-self: center;
   margin-top: -38px;
-  background-color: #222831;
+  background-color: #191d23;
   border-radius: 0px 12px 12px 0px;
   display: flex;
   flex-direction: column;
   gap:20px;
+  box-shadow: 5px 20px 12px black;
+  
 }
 #weatherPicture {
   width: 250px;
-  height: 364px;
+  height: 355px;
+  box-shadow: 18px 15px 30px black;
+  border-radius: 11.6px;
 }
 #overlayDiv {
-  border-radius: 12px;
+
 
   width: 250px;
   height: 355px;
   position: relative;
-  top: -359px;
-  background-color: black;
-  opacity: 0.7;
+  top: -358px;
+
+background: #8E7FF0;
+background: linear-gradient(0deg, #8E7FF0, #0B0712);
+  opacity: 0.8;
   color: white;
   display: flex;
   flex-direction: column;
   gap: 100px;
-  border-radius: 11px;
+  border-radius: 12px;
 
   #dateLocation {
     padding: 7px;
