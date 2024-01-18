@@ -8,7 +8,7 @@ An Application build with an API for fetching weather. It ipresents daily weathe
 
 ## Demo 🚴
 
-- click [Live Preview](https://mtendekuyokwa19.github.io/TaskManagementSystem/)to check it out!
+- click [Live Preview]( https://mtendekuyokwa19.github.io/WeatherApp/)to check it out!
 
 #### Installation
 
