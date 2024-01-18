@@ -3,12 +3,15 @@
 import { searchBarElementsHolder } from "./index.js";
 import { updateWeatherDom } from "./index.js";
 import { locationManagement } from "./index.js";
+import { toogleAlgorithim } from "./toogle.js";
 
 export let GetTodayWeather=(()=>{
+  let location={
+    place:"Lilongwe"
+  }
 
-
-    async function getWeather() {
-        let place=searchBarElementsHolder.searchInputElement.value;
+    async function getWeather(place) {
+     
         let location=new Request(`https://api.weatherapi.com/v1/current.json?key=89141f0601c84bb090f73728241601&q=${place}`)
         let WeatherOfplace= await fetch(location)
         let weatherUpdate=WeatherOfplace.json()
@@ -24,8 +27,10 @@ export let GetTodayWeather=(()=>{
     function updateWeather(value) {
        
     //  (value.current.temp_c,value.current.last_updated,value.current.condition.text,value.location.name,value.current.condition.icon)
+        let temperature;
+        toogleAlgorithim.metric.weatherMetric==="celcius"?temperature=value.current.temp_f+" °F":temperature=value.current.temp_c+" °C"
         
-     updateWeatherDom.changeWeather(value.current.temp_c,value.current.precip_mm,value.current.humidity,value.current.wind_kph,value.current.condition.text,value.current.condition.icon)
+     updateWeatherDom.changeWeather(temperature,value.current.precip_mm,value.current.humidity,value.current.wind_kph,value.current.condition.text,value.current.condition.icon)
       
         
     }
@@ -37,18 +42,18 @@ locationUpdate(value)
 
     function locationUpdate(value) {
       locationManagement.currentPlace(value.location.name,value.location.country)
-      
+      location.place=value.location.name
     }
 
  
     
-return {getWeather}
+return {getWeather,location}
 })()
 
 export let DailyWeather=(()=>{
 
   async function getDailyWeather() {
-    let place=searchBarElementsHolder.searchInputElement.value;
+    let place=GetTodayWeather.location.place;
     let location=new Request(`http://api.weatherapi.com/v1/forecast.json?key=89141f0601c84bb090f73728241601&q=${place}&days=4&aqi=no&alerts=no`)
     let WeatherOfplace= await fetch(location)
     let weatherUpdate=WeatherOfplace.json()
@@ -72,15 +77,29 @@ function updateDailyWeather({forecast}) {
 
  let icons=[tommorowIcon,theNextDayIcon,theOtherdayIcon]
  let temperatures=[tommorow,theNextDay,theOtherday]
+dailyWeatherUpdates(icons,temperatures,forecast)
 
- for (let i = 0; i < icons.length; i++) {
-  temperatures[i].textContent=forecast.forecastday[1].day.avgtemp_c
-  icons[i].setAttribute("src",forecast.forecastday[1].day.condition.icon)
-  
- }
 
   
 }
+
+function dailyWeatherUpdates(icons,temperatures,forecast) {
+  for (let i = 0; i < icons.length; i++) {
+
+    if(toogleAlgorithim.metric.weatherMetric==="celcius"){
+    
+
+      temperatures[i].textContent=forecast.forecastday[i].day.avgtemp_f+" °F"
+    }
+    else{
+      temperatures[i].textContent=forecast.forecastday[i].day.avgtemp_c+" °c"
+    }
+   
+    icons[i].setAttribute("src",forecast.forecastday[i].day.condition.icon)
+    
+   }
+}
+
 
 return {getDailyWeather}
 })()

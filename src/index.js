@@ -8,6 +8,7 @@ import rain from "./icons/rain.svg"
 import skyImg from "./imgs/sky.jpg";
 import { GetTodayWeather } from "./fetch";
 import { daysOfweek } from "./calender";
+import { toogleAlgorithim } from "./toogle";
 
 let createElement = (() => {
   class createElementtoDom {
@@ -234,11 +235,11 @@ weatherbox.forEach(weatherbox => {
  return{TodayWeather}
 })()
 
-let changeWeatherFormart=(()=>{
+export let changeWeatherFormart=(()=>{
 
-  let toogleButton=createElement.domElementMaker.domElementCreator("button","toogleButton",weatherDetailsDivs.toogleWeatherDiv,"Fahrenheit °F")
+  let toogleButton=createElement.domElementMaker.domElementCreator("button","toogleButton",weatherDetailsDivs.toogleWeatherDiv,"To "+toogleAlgorithim.metric.weatherMetric)
 
-
+return{toogleButton}
 })()
 
 export let updateWeatherDom=(()=>{
@@ -275,6 +276,15 @@ export let locationManagement=(()=>{
 return{currentPlace}
 })()
 
-searchBarElementsHolder.findSearchButton.addEventListener('click',GetTodayWeather.getWeather)
+let errorBox=(()=>{
+
+  
+})()
+
+searchBarElementsHolder.findSearchButton.addEventListener('click',function () {
+  GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
+})
+
 daysOfweek.DaysManagement()
 daysOfweek.todayDate()
+toogleAlgorithim.toogleMethod()
