@@ -27,7 +27,7 @@ export let GetTodayWeather = (() => {
   }
 
   function updateWeather(value) {
-    //  (value.current.temp_c,value.current.last_updated,value.current.condition.text,value.location.name,value.current.condition.icon)
+    
     let temperature;
     toogleAlgorithim.metric.weatherMetric === "celcius"
       ? (temperature = value.current.temp_f + " °F")
