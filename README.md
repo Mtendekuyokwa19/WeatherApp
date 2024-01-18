@@ -26,7 +26,7 @@ An Application build with an API for fetching weather. It ipresents daily weathe
 
    > It is able to fetch todays weather i.e it's precipitation and average temperature
 
-2. Collectiong forecast
+2. Collecting forecast
    > gets the weather fore the next three days
 3. Toogling Metric
    > One is able to switch from celcisus to fahrenheit and viceversa.
