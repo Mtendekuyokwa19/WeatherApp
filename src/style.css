@@ -299,13 +299,14 @@ left: 2%;
 
 button{
   position: relative;
-top: 28%;
+top: 32%;
 left: 4%;
 width: 50px;
 border: none;
-background-color: beige;
+background-color: white;
 color: #0d0f11;
-
+font-size: 16px;
+border: solid black 2px;
 }
 
 

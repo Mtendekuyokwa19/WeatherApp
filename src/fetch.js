@@ -105,7 +105,7 @@ function dailyWeatherUpdates(icons,temperatures,forecast) {
       temperatures[i].textContent=forecast.forecastday[i].day.avgtemp_f+" °F"
     }
     else{
-      temperatures[i].textContent=forecast.forecastday[i].day.avgtemp_c+" °c"
+      temperatures[i].textContent=forecast.forecastday[i].day.avgtemp_c+" °C"
     }
    
     icons[i].setAttribute("src",forecast.forecastday[i].day.condition.icon)
