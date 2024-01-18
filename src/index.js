@@ -285,6 +285,22 @@ searchBarElementsHolder.findSearchButton.addEventListener('click',function () {
   GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
 })
 
+export let dialogBox=(()=>{
+let dialog=createElement.domElementMaker.domElementCreator("dialog","errorBox",document.body)
+let errorMessage=createElement.domElementMaker.domElementCreator("h4","errorBox",dialog,"Not Found")
+let closeButton=createElement.domElementMaker.domElementCreator("button","closeButton",dialog,"close")
+closeButton.addEventListener('click',closeModal)
+function closeModal() {
+  dialog.close()
+  
+}
+
+function showBox() {
+  dialog.showModal()
+}
+
+return {showBox}
+})()
 daysOfweek.DaysManagement()
 daysOfweek.todayDate()
 toogleAlgorithim.toogleMethod()

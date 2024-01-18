@@ -266,3 +266,47 @@ background-color: #7B57e0 ;
  fill: white;
 }
 
+dialog{
+
+
+  font-size: 22px;
+background-color: #f53b30;  
+color: white;
+padding: 10px;
+border: none;
+outline:none;
+width: 139px;
+border-radius: 8px;
+position: absolute;
+top: 30%;
+left: 43%;
+height: 100px;
+overflow: hidden;
+h4{
+
+position: relative;
+top: 30%;
+left: 2%;
+
+}
+
+button{
+  position: relative;
+top: 28%;
+left: 4%;
+width: 50px;
+border: none;
+background-color: beige;
+color: #0d0f11;
+
+}
+
+
+
+
+}
+
+dialog::backdrop{
+
+  backdrop-filter: blur(5px);
+}

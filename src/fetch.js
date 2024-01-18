@@ -1,6 +1,6 @@
 /* eslint-disable no-self-assign */
 /* eslint-disable no-unused-vars */
-import { searchBarElementsHolder } from "./index.js";
+import { dialogBox, searchBarElementsHolder } from "./index.js";
 import { updateWeatherDom } from "./index.js";
 import { locationManagement } from "./index.js";
 import { toogleAlgorithim } from "./toogle.js";
@@ -11,17 +11,30 @@ export let GetTodayWeather=(()=>{
   }
 
     async function getWeather(place) {
-     
-        let location=new Request(`https://api.weatherapi.com/v1/current.json?key=89141f0601c84bb090f73728241601&q=${place}`)
-        let WeatherOfplace= await fetch(location)
-        let weatherUpdate=WeatherOfplace.json()
-        
-  weatherUpdate.then((resolve)=>{
-   UpdateEntries(resolve)
-      })
+    try{
 
-      DailyWeather.getDailyWeather()
-        return weatherUpdate;
+      let location=new Request(`https://api.weatherapi.com/v1/current.json?key=89141f0601c84bb090f73728241601&q=${place}`)
+     
+      let WeatherOfplace= await fetch(location)
+      let weatherUpdate= await WeatherOfplace.json()
+      UpdateEntries(weatherUpdate)
+      
+
+
+    DailyWeather.getDailyWeather()
+   
+
+
+    }
+    catch(error){
+
+    
+      dialogBox.showBox()
+
+
+    }
+   
+  
     }
 
     function updateWeather(value) {
