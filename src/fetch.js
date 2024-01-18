@@ -63,7 +63,7 @@ export let DailyWeather = (() => {
   async function getDailyWeather() {
     let place = GetTodayWeather.location.place;
     let location = new Request(
-      `http://api.weatherapi.com/v1/forecast.json?key=89141f0601c84bb090f73728241601&q=${place}&days=4&aqi=no&alerts=no`,
+      `https://api.weatherapi.com/v1/forecast.json?key=89141f0601c84bb090f73728241601&q=${place}&days=4&aqi=no&alerts=no`,
     );
     let WeatherOfplace = await fetch(location);
     let weatherUpdate = WeatherOfplace.json();
