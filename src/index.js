@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import "normalize.css"
+import "normalize.css";
 import "./style.css";
 
 import magnifyinGlass from "./icons/search.svg";
 import locationIcon from "./icons/Location.svg";
 import weatherIcon from "./icons/Sun.svg";
-import rain from "./icons/rain.svg"
+import rain from "./icons/rain.svg";
 import skyImg from "./imgs/sky.jpg";
 import { GetTodayWeather } from "./fetch";
 import { daysOfweek } from "./calender";
@@ -87,7 +87,7 @@ export let searchBarElementsHolder = (() => {
     "magniftingGlassicon",
   );
 
-  return {searchInputElement,findSearchButton}
+  return { searchInputElement, findSearchButton };
 })();
 
 let WeatherBox = (() => {
@@ -112,7 +112,7 @@ let WeatherBox = (() => {
     createContainer.weatherBoxdiv,
   );
 
-  return { overlayDiv,weatherInformation };
+  return { overlayDiv, weatherInformation };
 })();
 
 export let TemperatureSetting = (() => {
@@ -175,139 +175,251 @@ export let TemperatureSetting = (() => {
     "Sunny",
   );
 
-  return{typeOfweather,currentWeatherIcon,currentTemperature,locationDetails,Day}
+  return {
+    typeOfweather,
+    currentWeatherIcon,
+    currentTemperature,
+    locationDetails,
+    Day,
+  };
 })();
 
-let weatherDetailsDivs=(()=>{
+let weatherDetailsDivs = (() => {
+  let extraDetailsDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "extraDetailsDiv",
+    WeatherBox.weatherInformation,
+  );
 
-  let extraDetailsDiv=createElement.domElementMaker.domElementCreator("div","extraDetailsDiv",WeatherBox.weatherInformation)
+  let dailyWeather = createElement.domElementMaker.domElementCreator(
+    "div",
+    "dailyWeather",
+    WeatherBox.weatherInformation,
+  );
 
-  let dailyWeather=createElement.domElementMaker.domElementCreator("div","dailyWeather",WeatherBox.weatherInformation)
+  let toogleWeatherDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "toogleWeatherdiv",
+    WeatherBox.weatherInformation,
+  );
 
-  let toogleWeatherDiv=createElement.domElementMaker.domElementCreator("div","toogleWeatherdiv",WeatherBox.weatherInformation)
+  return { extraDetailsDiv, dailyWeather, toogleWeatherDiv };
+})();
 
-return {extraDetailsDiv,dailyWeather,toogleWeatherDiv}
-})()
+let extraWetherDetails = (() => {
+  let PrecipitationDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "PrecipitationDiv",
+    weatherDetailsDivs.extraDetailsDiv,
+  );
+  let HumidityDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "HumidityDiv",
+    weatherDetailsDivs.extraDetailsDiv,
+  );
+  let WindDiv = createElement.domElementMaker.domElementCreator(
+    "div",
+    "windDiv",
+    weatherDetailsDivs.extraDetailsDiv,
+  );
 
-let extraWetherDetails=(()=>{
+  let Precipitaion = createElement.domElementMaker.domElementCreator(
+    "p",
+    "Precipitation",
+    PrecipitationDiv,
+    "Precipitation",
+  );
+  let PrecipitaionDetails = createElement.domElementMaker.domElementCreator(
+    "p",
+    "PrecipitationDetails",
+    PrecipitationDiv,
+    "0 mm",
+  );
 
-  let PrecipitationDiv=createElement.domElementMaker.domElementCreator("div","PrecipitationDiv",weatherDetailsDivs.extraDetailsDiv)
-  let HumidityDiv=createElement.domElementMaker.domElementCreator("div","HumidityDiv",weatherDetailsDivs.extraDetailsDiv)
-  let WindDiv=createElement.domElementMaker.domElementCreator("div","windDiv",weatherDetailsDivs.extraDetailsDiv)
+  let Humidity = createElement.domElementMaker.domElementCreator(
+    "p",
+    "Humidity",
+    HumidityDiv,
+    "Humidty",
+  );
+  let HumidityDetails = createElement.domElementMaker.domElementCreator(
+    "p",
+    "HumidityDetails",
+    HumidityDiv,
+    "18 mm",
+  );
 
-  let Precipitaion=createElement.domElementMaker.domElementCreator("p","Precipitation",PrecipitationDiv,"Precipitation")
-  let PrecipitaionDetails=createElement.domElementMaker.domElementCreator("p","PrecipitationDetails",PrecipitationDiv,"0 mm")
+  let Wind = createElement.domElementMaker.domElementCreator(
+    "p",
+    "wind",
+    WindDiv,
+    "Wind",
+  );
+  let WindDetails = createElement.domElementMaker.domElementCreator(
+    "p",
+    "WindDetails",
+    WindDiv,
+    "3 km/h",
+  );
 
-  let Humidity=createElement.domElementMaker.domElementCreator("p","Humidity",HumidityDiv,"Humidty")
-  let HumidityDetails=createElement.domElementMaker.domElementCreator("p","HumidityDetails",HumidityDiv,"18 mm")
+  return { PrecipitaionDetails, HumidityDetails, WindDetails };
+})();
 
-  let Wind=createElement.domElementMaker.domElementCreator("p","wind",WindDiv,"Wind")
-  let WindDetails=createElement.domElementMaker.domElementCreator("p","WindDetails",WindDiv,"3 km/h")
+let dailyWeatherUpdates = (() => {
+  let updatesHolder = createElement.domElementMaker.domElementCreator(
+    "div",
+    "WeatherUpdateHolder",
+    weatherDetailsDivs.dailyWeather,
+  );
 
-
-  return{PrecipitaionDetails,HumidityDetails,WindDetails}
-})()
-
-let dailyWeatherUpdates=(()=>{
-
-  let updatesHolder=createElement.domElementMaker.domElementCreator("div","WeatherUpdateHolder",weatherDetailsDivs.dailyWeather)
-
-  let TodayWeather=createElement.domElementMaker.domElementCreator("div","TodayWeather",updatesHolder)
-  let TommorowWeather=createElement.domElementMaker.domElementCreator("div","TommorowWeather",updatesHolder)
-  let TheNextWeather=createElement.domElementMaker.domElementCreator("div","TheNextWeather",updatesHolder)
-  let TheOtherDayWeather=createElement.domElementMaker.domElementCreator("div","TheOtherDayWeather",updatesHolder)
+  let TodayWeather = createElement.domElementMaker.domElementCreator(
+    "div",
+    "TodayWeather",
+    updatesHolder,
+  );
+  let TommorowWeather = createElement.domElementMaker.domElementCreator(
+    "div",
+    "TommorowWeather",
+    updatesHolder,
+  );
+  let TheNextWeather = createElement.domElementMaker.domElementCreator(
+    "div",
+    "TheNextWeather",
+    updatesHolder,
+  );
+  let TheOtherDayWeather = createElement.domElementMaker.domElementCreator(
+    "div",
+    "TheOtherDayWeather",
+    updatesHolder,
+  );
 
   function placeDefaultWeather() {
-    
-let weatherbox=[TheOtherDayWeather,TheNextWeather,TommorowWeather,TodayWeather]
-let DayWeather=["Tue","Wed","Thur","Fri"]
-let index=3;
-weatherbox.forEach(weatherbox => {
-
-  let Rain=createElement.domElementMaker.ImageLoadtoDOm(rain,weatherbox,"Rain")
-  let Day=createElement.domElementMaker.domElementCreator("p","dayOfWeather",weatherbox,DayWeather[index])
-  let temperature=createElement.domElementMaker.domElementCreator("p","temperatureOfday",weatherbox,"30 °C")
-  index--;
-});
-  }  
+    let weatherbox = [
+      TheOtherDayWeather,
+      TheNextWeather,
+      TommorowWeather,
+      TodayWeather,
+    ];
+    let DayWeather = ["Tue", "Wed", "Thur", "Fri"];
+    let index = 3;
+    weatherbox.forEach((weatherbox) => {
+      let Rain = createElement.domElementMaker.ImageLoadtoDOm(
+        rain,
+        weatherbox,
+        "Rain",
+      );
+      let Day = createElement.domElementMaker.domElementCreator(
+        "p",
+        "dayOfWeather",
+        weatherbox,
+        DayWeather[index],
+      );
+      let temperature = createElement.domElementMaker.domElementCreator(
+        "p",
+        "temperatureOfday",
+        weatherbox,
+        "30 °C",
+      );
+      index--;
+    });
+  }
   placeDefaultWeather();
 
-  
- return{TodayWeather}
-})()
+  return { TodayWeather };
+})();
 
-export let changeWeatherFormart=(()=>{
+export let changeWeatherFormart = (() => {
+  let toogleButton = createElement.domElementMaker.domElementCreator(
+    "button",
+    "toogleButton",
+    weatherDetailsDivs.toogleWeatherDiv,
+    "To " + toogleAlgorithim.metric.weatherMetric,
+  );
 
-  let toogleButton=createElement.domElementMaker.domElementCreator("button","toogleButton",weatherDetailsDivs.toogleWeatherDiv,"To "+toogleAlgorithim.metric.weatherMetric)
+  return { toogleButton };
+})();
 
-return{toogleButton}
-})()
+export let updateWeatherDom = (() => {
+  let TodayWeatherIcon = document.querySelector("#TodayWeather img");
+  let TodayWeatherDetails = document.querySelector(
+    "#TodayWeather p:last-child",
+  );
 
-export let updateWeatherDom=(()=>{
-  let TodayWeatherIcon=document.querySelector('#TodayWeather img')
-  let TodayWeatherDetails=document.querySelector('#TodayWeather p:last-child')
+  function changeWeather(
+    temperature,
+    Precipitaion,
+    Humidity,
+    wind,
+    feelsLike,
+    icon,
+  ) {
+    extraWetherDetails.PrecipitaionDetails.textContent = Precipitaion + " mm";
+    extraWetherDetails.HumidityDetails.textContent = Humidity + " mm";
+    extraWetherDetails.WindDetails.textContent = wind + " km/h";
 
-  function changeWeather(temperature,Precipitaion,Humidity,wind,feelsLike,icon) {
-extraWetherDetails.PrecipitaionDetails.textContent=Precipitaion+" mm";
-extraWetherDetails.HumidityDetails.textContent=Humidity+" mm";
-extraWetherDetails.WindDetails.textContent=wind+" km/h";
+    TemperatureSetting.currentTemperature.textContent = temperature;
+    TemperatureSetting.typeOfweather.textContent = feelsLike;
+    TemperatureSetting.currentWeatherIcon.setAttribute("src", icon);
 
-TemperatureSetting.currentTemperature.textContent=temperature;
-TemperatureSetting.typeOfweather.textContent=feelsLike;
-TemperatureSetting.currentWeatherIcon.setAttribute("src",icon)
-
-TodayWeatherIcon.setAttribute("src",icon)
-TodayWeatherDetails.textContent=temperature
-
-    
+    TodayWeatherIcon.setAttribute("src", icon);
+    TodayWeatherDetails.textContent = temperature;
   }
 
-  
-return {changeWeather}
-})()
+  return { changeWeather };
+})();
 
-export let locationManagement=(()=>{
-
-  function currentPlace(city,country) {
-    let location=document.querySelector('#locationDetails')
-    location.textContent=city+", "+country
-    
+export let locationManagement = (() => {
+  function currentPlace(city, country) {
+    let location = document.querySelector("#locationDetails");
+    location.textContent = city + ", " + country;
   }
 
-return{currentPlace}
-})()
+  return { currentPlace };
+})();
 
-let errorBox=(()=>{
+let errorBox = (() => {})();
 
-  
-})()
-
-searchBarElementsHolder.findSearchButton.addEventListener('click',function () {
-  GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
-})
-GetTodayWeather.getWeather("Lilongwe")
-window.addEventListener('keydown', function(event) {
+searchBarElementsHolder.findSearchButton.addEventListener("click", function () {
+  GetTodayWeather.getWeather(searchBarElementsHolder.searchInputElement.value);
+});
+GetTodayWeather.getWeather("Lilongwe");
+window.addEventListener("keydown", function (event) {
   if (event.keyCode === 13) {
-    GetTodayWeather.getWeather( searchBarElementsHolder.searchInputElement.value)
+    GetTodayWeather.getWeather(
+      searchBarElementsHolder.searchInputElement.value,
+    );
   }
 });
 
-export let dialogBox=(()=>{
-let dialog=createElement.domElementMaker.domElementCreator("dialog","errorBox",document.body)
-let errorMessage=createElement.domElementMaker.domElementCreator("h4","errorBox",dialog,"Not Found")
-let closeButton=createElement.domElementMaker.domElementCreator("button","closeButton",dialog,"close")
-closeButton.addEventListener('click',closeModal)
-function closeModal() {
-  dialog.close()
-  
-}
+export let dialogBox = (() => {
+  let dialog = createElement.domElementMaker.domElementCreator(
+    "dialog",
+    "errorBox",
+    document.body,
+  );
+  let errorMessage = createElement.domElementMaker.domElementCreator(
+    "h4",
+    "errorBox",
+    dialog,
+    "Not Found",
+  );
+  let closeButton = createElement.domElementMaker.domElementCreator(
+    "button",
+    "closeButton",
+    dialog,
+    "close",
+  );
+  closeButton.addEventListener("click", closeModal);
+  function closeModal() {
+    dialog.close();
+  }
 
-function showBox() {
-  dialog.showModal()
-}
+  function showBox() {
+    dialog.showModal();
+  }
 
-return {showBox}
-})()
-daysOfweek.DaysManagement()
-daysOfweek.todayDate()
-toogleAlgorithim.toogleMethod()
+  return { showBox };
+})();
+daysOfweek.DaysManagement();
+daysOfweek.todayDate();
+toogleAlgorithim.toogleMethod();
